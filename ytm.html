@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yield to Maturity Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YTM Calculator</h1>
+        <input type="number" id="faceValue" placeholder="Face Value" />
+        <input type="number" id="couponRate" placeholder="Coupon Rate (%)" />
+        <input type="number" id="yearsToMaturity" placeholder="Years to Maturity" />
+        <input type="number" id="currentPrice" placeholder="Current Price" />
+        <button onclick="calculateYTM()">Calculate YTM</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateYTM() {
+            const faceValue = parseFloat(document.getElementById('faceValue').value);
+            const couponRate = parseFloat(document.getElementById('couponRate').value) / 100;
+            const yearsToMaturity = parseFloat(document.getElementById('yearsToMaturity').value);
+            const currentPrice = parseFloat(document.getElementById('currentPrice').value);
+
+            const couponPayment = faceValue * couponRate;
+            const ytm = (couponPayment + (faceValue - currentPrice) / yearsToMaturity) / ((faceValue + currentPrice) / 2);
+
+            document.getElementById('result').innerText = `Yield to Maturity: ${(ytm * 100).toFixed(2)}%`;
+        }
+    </script>
+</body>
+</html>
